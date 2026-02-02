@@ -1,0 +1,239 @@
+/* General Setup */
+:root {
+    --sage-green: #778958;
+    --dark-sea-green: #588157;
+    --off-white: #FDFDFF;
+    --valentines-pink: #ec9abe;
+    --valentines-red: #D93B65;
+    --correct-green: #77dd77;
+    --incorrect-red: #ff6961;
+    --valentines-font: 'Playpen Sans', 'cursive', 'sans-serif';
+    --main-font: 'Playpen Sans', 'Roboto', 'Helvetica Neue', sans-serif;
+    --transition-speed: 0.5s;
+}
+
+body {
+    margin: 0;
+    font-family: var(--main-font);
+    background-color: var(--sage-green);
+    color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    transition: background-color 1s ease-in-out;
+}
+
+/* The main container for all content */
+#main-container {
+    text-align: center;
+    padding: 1rem 2rem;
+    max-width: 90%;
+    width: 90%;
+    opacity: 1;
+    transition: opacity var(--transition-speed) ease-in-out;
+}
+
+#main-container.fade-out {
+    opacity: 0;
+}
+
+/* For individual message text within sequences */
+.message-content {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.message-content.fade-out-message {
+    opacity: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+h2 {
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+h1:hover, h2:hover, p:hover {
+    cursor: default;
+} 
+
+/* Buttons */
+.button-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+button {
+    font-family: var(--main-font);
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--off-white);
+    background-color: transparent;
+    color: var(--off-white);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+button:hover {
+    background-color: var(--off-white);
+    color: var(--dark-sea-green);
+    transform: scale(1.1) translateY(-2px);
+}
+
+button:disabled {
+    /* cursor: not-allowed; */
+    opacity: 0.7;
+}
+
+#no-button {
+    position: absolute;
+}
+
+/* Answer Feedback Animations */
+.correct-flash {
+    animation: flash-green 1s ease;
+}
+.incorrect-flash {
+    animation: flash-red 1s ease;
+}
+
+@keyframes flash-green {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: var(--correct-green); }
+}
+
+@keyframes flash-red {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: var(--incorrect-red); }
+}
+
+/* Word Clue Game Styles */
+.clue-text {
+    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+.clue-phrase-progress {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.word-input {
+    font-family: var(--main-font);
+    font-size: 1.2rem;
+    padding: 0.8rem;
+    border-radius: 20px;
+    border: 2px solid var(--off-white);
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--off-white);
+    text-align: center;
+    margin-right: 0.5rem;
+    outline: none;
+}
+.word-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+.wiggle {
+    animation: wiggle 0.5s ease;
+}
+@keyframes wiggle {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+#word-submit-button {
+    min-width: 100px;
+    padding: 0.8rem 1rem;
+}
+
+/* Final Valentine Theme */
+body.valentine-theme {
+    background-color: var(--valentines-pink);
+}
+
+body.valentine-theme #main-container,
+body.valentine-theme button,
+body.valentine-theme .word-input {
+    font-family: var(--valentines-font);
+}
+
+body.valentine-theme h1 {
+    font-size: 3rem;
+    margin: 0.2rem;
+}
+
+body.valentine-theme button {
+    color: var(--valentines-red);
+    border-color: var(--valentines-red);
+}
+
+body.valentine-theme button:hover {
+    background-color: var(--valentines-red);
+    color: white;
+}
+
+#yes-button {
+    position: absolute;
+    left: 30%;
+    top: 80%;
+}
+#no-button {
+    position: absolute;
+    right: 30%;
+    top: 80%;
+    transition: left 0s, right 0s, top 0s, bottom 0s;
+    width: fit-content;
+    height: fit-content;
+}
+
+#WeeImg {
+    width: 15rem;
+}
+
+/* Floating Hearts Animation */
+.heart {
+    position: absolute;
+    animation: float 10s linear infinite;
+    opacity: 1;
+    width: 2rem;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-50vh) rotate(720deg); opacity: 0; }
+}
+
+/* Final Result Display */
+.final-gif {
+    width: 250px;
+    max-width: 100%;
+    border-radius: 20px;
+    margin-top: 1rem;
+}
+.score-text {
+    margin-top: 1.5rem;
+    font-size: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    p { font-size: 1.2rem; }
+    button { font-size: 1rem; padding: 0.6rem 1.2rem; }
+    body.valentine-theme h1 { font-size: 2.5rem; }
+    .word-input { width: 60%; }
+    .score-text { font-size: 1.5rem; }
+}
